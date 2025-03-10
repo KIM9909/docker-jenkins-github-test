@@ -1,12 +1,4 @@
-FROM openjdk:11-jdk
-
-LABEL maintainer="mooh2jj@naver.com"
-
+FROM tomcat:9.0-jdk17
+COPY build/libs/gradle-springboot-test-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
 EXPOSE 8080
-
-ARG JAR_FILE=build/libs/*.jar
-
-COPY ${JAR_FILE} app.jar
-
-ENTRYPOINT ["java","-jar","/app.jar"]
-
+CMD ["catalina.sh", "run"]
